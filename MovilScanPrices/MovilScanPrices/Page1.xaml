@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovilScanPrices.Page1"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#ff630a"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+        <Grid>
+            <Frame BackgroundColor="WhiteSmoke" Margin="50">
+
+            <StackLayout>
+
+                <Image Source="FLHCOLOR.png"
+                       HeightRequest="100"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"/>
+
+                <Label x:Name="lblnombre"
+                       FontSize="50"
+                       TextColor="Black" 
+                       FontAttributes="Bold"
+                       Margin="0,100,0,0"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+
+                <StackLayout Margin="0,-30,0,0" HorizontalOptions="Center"
+                       VerticalOptions="Start" Orientation="Horizontal">
+                    <Label  TextColor="Black"
+                            TranslationY="45"
+                                  Text="RD$  "                                  
+                                  FontSize="100"/>
+                    <Label TextColor="Black" 
+                                  Text="136"                                 
+                                  FontSize="200"/>
+                    <Label TextColor="Black" 
+                                  Text="25"                                 
+                                  FontSize="100"
+                                  TranslationY="45"
+                           TranslationX="15"/>
+                </StackLayout>
+                
+            </StackLayout>
+                
+        </Frame>
+
+        </Grid>
+
+
+</ContentPage>

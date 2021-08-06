@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovilScanPrices.Views.InitPage"             
+             xmlns:controls="clr-namespace:MovilScanPrices.Controls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#ff630a">
+
+    <Frame BackgroundColor="WhiteSmoke" Margin="50">
+
+        <StackLayout>
+            <Image Source="FLHCOLOR.png"
+                       HeightRequest="200"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"/>
+
+            <controls:BorderEntry VerticalOptions="Center"></controls:BorderEntry>
+
+            <Button BackgroundColor="#ff630a"
+                    WidthRequest="150"
+                    HeightRequest="60"  
+                    CornerRadius="25"
+                    HorizontalOptions="Center"
+                    Text="Save"
+                    TextColor="WhiteSmoke"
+                    FontAttributes="Bold"
+                    FontSize="30"></Button>
+        </StackLayout>
+        
+    </Frame>
+    
+</ContentPage>

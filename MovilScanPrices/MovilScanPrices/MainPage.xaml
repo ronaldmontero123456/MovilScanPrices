@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="MovilScanPrices.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="MovilScanPrice"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="#ff630a">
+    <Frame BackgroundColor="White" Margin="50">
+            <StackLayout>
+            <Image Source="FLHCOLOR" Aspect="Fill" HeightRequest="120" WidthRequest="350" HorizontalOptions="Center"></Image>
+
+                <lottie:AnimationView
+                       x:Name="animationView"
+                       Animation="Barcodepruebafinal.mp4.lottie.json"
+                       Loop="True"
+                       AutoPlay="True"
+                        HeightRequest="180"/>
+
+                <StackLayout Spacing="0">
+                    <Label Text="Coloque" FontSize="30" TextColor="Black" HorizontalOptions="Center"></Label>
+                    <Label Text="el código de barra" FontSize="30" TextColor="Black" HorizontalOptions="Center"></Label>
+                    <Label Text="en el scanner" FontSize="30" TextColor="Black" HorizontalOptions="Center"></Label>
+
+                </StackLayout>
+
+                <Image Source="Rayasabajo.png" HorizontalOptions="Center" VerticalOptions="End" Aspect="Fill" HeightRequest="120" WidthRequest="120"></Image>
+
+
+            <Image Source="https://ibb.co/y57ZyRC"
+               x:Name="framename" 
+               IsVisible="false" 
+               BackgroundColor="Black"
+               Margin="50"/>
+        </StackLayout>
+    </Frame>
+
+
+</ContentPage>
