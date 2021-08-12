@@ -8,13 +8,26 @@
 
     <Frame BackgroundColor="WhiteSmoke" Margin="50">
 
-        <StackLayout>
+        <StackLayout Spacing="50">
             <Image Source="FLHCOLOR.png"
                        HeightRequest="200"
                        HorizontalOptions="CenterAndExpand"
                        Aspect="AspectFit"/>
+            <StackLayout>
 
-            <controls:BorderEntry VerticalOptions="Center"></controls:BorderEntry>
+                <ContentView Padding="1" Margin="340,0,340,0" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="LightGray">
+                    <controls:BorderEntry Placeholder="IP" x:Name="EntIp" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="White">
+                    </controls:BorderEntry>
+                </ContentView>
+                <ContentView Padding="1" Margin="340,0,340,0" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="LightGray">
+                    <controls:BorderEntry Placeholder="PATH"  x:Name="EntPath" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="White">
+                    </controls:BorderEntry>
+                </ContentView>
+                <ContentView Padding="1" Margin="340,0,340,0" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="LightGray">
+                    <controls:BorderEntry Placeholder="PATH URL"  x:Name="EntPathUrl" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="White">
+                    </controls:BorderEntry>
+                </ContentView>
+            </StackLayout>
 
             <Button BackgroundColor="#ff630a"
                     WidthRequest="150"
@@ -24,7 +37,7 @@
                     Text="Save"
                     TextColor="WhiteSmoke"
                     FontAttributes="Bold"
-                    FontSize="30"></Button>
+                    FontSize="30" Clicked="Button_Clicked"></Button>
         </StackLayout>
         
     </Frame>

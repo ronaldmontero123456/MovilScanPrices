@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovilScanPrices.Views.TarjetaPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#ff630a">
+
+    <Frame Margin="50"  BackgroundColor="White">
+        <StackLayout Spacing="0" VerticalOptions="Center">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Nombre: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+                <Label x:Name="lblnombre" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Balance Puntos: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+                <Label x:Name="lblpuntos" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+            </StackLayout>
+           
+        </StackLayout>
+    </Frame>
+
+</ContentPage>

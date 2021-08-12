@@ -17,12 +17,15 @@ namespace MovilScanPrices
 
         public Page1(Products product)
         {
-            InitializeComponent();
-            //imagenProducto.Source = product.proImg;
-            lblnombre.Text = product.proDescripcion;
-            //lblprecio.Text = product.ProPrecio.ToString("N2");
+            var precios = product.Precio.ToString("N2").Split('.');
 
-            if(timer == null)
+            InitializeComponent();
+
+            lblnombre.Text = product.Description;
+            lblprecio.Text = precios[0];
+            lblcent.Text = precios[1].Substring(0,2);
+
+            if (timer == null)
             {
                 timer = new Timer();
                 timer.Schedule(new MyTimer(timer), 0, 1000);

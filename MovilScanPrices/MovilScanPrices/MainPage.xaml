@@ -7,9 +7,10 @@
              Title="MovilScanPrice"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="#ff630a">
-    <Frame BackgroundColor="White" Margin="50">
+    <Grid>
+        <Frame BackgroundColor="White" Margin="50">
             <StackLayout>
-            <Image Source="FLHCOLOR" Aspect="Fill" HeightRequest="120" WidthRequest="350" HorizontalOptions="Center"></Image>
+                <Image Source="FLHCOLOR" Aspect="Fill" HeightRequest="120" WidthRequest="350" HorizontalOptions="Center"></Image>
 
                 <lottie:AnimationView
                        x:Name="animationView"
@@ -26,15 +27,24 @@
                 </StackLayout>
 
                 <Image Source="Rayasabajo.png" HorizontalOptions="Center" VerticalOptions="End" Aspect="Fill" HeightRequest="120" WidthRequest="120"></Image>
+            </StackLayout>
+        </Frame>
 
 
-            <Image Source="https://ibb.co/y57ZyRC"
+        <Frame
                x:Name="framename" 
-               IsVisible="false" 
-               BackgroundColor="Black"
-               Margin="50"/>
-        </StackLayout>
-    </Frame>
+               Margin="50"
+            IsVisible="false">
 
+            <ffimageloading:CachedImage 
+                            x:Name="imagenProducto"
+                            BackgroundColor="Black"
+                            DownsampleUseDipUnits="False" 
+                            Aspect="Fill"
+                            Margin="-21"
+							LoadingPlaceholder="image_loading"
+                            ErrorPlaceholder="image_not_available"/>
 
-</ContentPage>
+        </Frame>
+    </Grid>
+ </ContentPage>

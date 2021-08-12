@@ -31,10 +31,10 @@
                                   Text="RD$  "                                  
                                   FontSize="100"/>
                     <Label TextColor="Black" 
-                                  Text="136"                                 
+                           x:Name="lblprecio"                               
                                   FontSize="200"/>
                     <Label TextColor="Black" 
-                                  Text="25"                                 
+                           x:Name="lblcent"
                                   FontSize="100"
                                   TranslationY="45"
                            TranslationX="15"/>

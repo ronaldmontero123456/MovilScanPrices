@@ -11,6 +11,9 @@ using Xamarin.Forms;
 using Java.Lang;
 using Android.Hardware;
 using MovilScanPrices.Utils;
+using Square.Picasso;
+using Android.Graphics;
+using System.Runtime.Remoting.Contexts;
 
 namespace MovilScanPrices.Droid
 {
@@ -21,18 +24,19 @@ namespace MovilScanPrices.Droid
         internal static Activity Instance { get; private set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
-            this.Window.AddFlags(WindowManagerFlags.NotTouchable);
+             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+        //    this.Window.AddFlags(WindowManagerFlags.NotTouchable);
             this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            //====================================
+            ////====================================
             int uiOptions = (int)Window.DecorView.SystemUiVisibility;
             uiOptions |= (int)SystemUiFlags.LowProfile;
             uiOptions |= (int)SystemUiFlags.Fullscreen;
@@ -40,8 +44,26 @@ namespace MovilScanPrices.Droid
             uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
             //====================================
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
-            LoadApplication(new App());
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(false);
+
+            //SetContentView(Resource.Layout.Main);
+
+            //ImageView ivItem = FindViewById<ImageView>(Resource.Id.ivItem);
+
+            //Picasso.With(this)
+            //    .Load("file://laptop-fdvfbv0k/Users/LEGION/Desktop/aransa/1.jpg")
+            //    .Fit()
+            //    .CenterInside()
+            //    .MemoryPolicy(MemoryPolicy.NoCache, MemoryPolicy.NoStore)
+            //    .NetworkPolicy(NetworkPolicy.NoCache, NetworkPolicy.NoStore)
+            //    .Into(ivItem);
+
+
+            //Picasso.Get()
+            //.Load("file://laptop-fdvfbv0k/Users/LEGION/Desktop/aransa/1.jpg") // Add this
+            //.Fit().CenterCrop()
+            //.Into(ivItem);
+            LoadApplication(new App());
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

@@ -2,10 +2,11 @@
 {
     public class Products
     {
-        public int proID { get; set; }
-        public string proReferencia { get; set; }
-        public string proDescripcion { get; set; }
-        public string proImg { get; set; }
-        public decimal ProPrecio { get; set; }
+        public string Codigo { get; set; }
+        public string BarCode { get; set; }
+        public string Description { get; set; }
+        public string ProImg { get; set; }
+        public decimal Precio { get; set; }
+        public decimal PrincipioActivo { get; set; }
     }
 }
