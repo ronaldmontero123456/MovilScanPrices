@@ -86,7 +86,7 @@ namespace MovilScanPrices
             try
             {
                 var client = new HttpClient();
-                string uri = $"http://movilbusiness.com.do/scanpriceapi/api/scanprice/getproductsbybarcode?barcode={arg}";
+                string uri = $"{Application.Current.Properties["PATHURL"]}/getproductsbybarcode?barcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
@@ -109,7 +109,7 @@ namespace MovilScanPrices
             try
             {
                 var client = new HttpClient();
-                string uri = $"http://movilbusiness.com.do/scanpriceapi/api/scanprice/gettarjetabybarcode?tarjcode={arg}";
+                string uri = $"{Application.Current.Properties["PATHURL"]}/gettarjetabybarcode?tarjcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
