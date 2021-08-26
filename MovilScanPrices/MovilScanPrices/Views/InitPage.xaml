@@ -24,7 +24,7 @@
                     </controls:BorderEntry>
                 </ContentView>
                 <ContentView Padding="1" Margin="340,0,340,0" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="LightGray">
-                    <controls:BorderEntry Placeholder="PATH URL"  x:Name="EntPathUrl" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="White">
+                    <controls:BorderEntry Placeholder="IPLOCAL"  x:Name="EntPathUrl" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="White">
                     </controls:BorderEntry>
                 </ContentView>
             </StackLayout>

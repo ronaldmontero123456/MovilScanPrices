@@ -7,6 +7,6 @@
         public string Description { get; set; }
         public string ProImg { get; set; }
         public decimal Precio { get; set; }
-        public decimal PrincipioActivo { get; set; }
+        public string PrincipioActivo { get; set; }
     }
 }

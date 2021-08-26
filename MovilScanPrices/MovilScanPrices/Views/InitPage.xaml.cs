@@ -29,17 +29,11 @@ namespace MovilScanPrices.Views
                 await DisplayAlert("Aviso", "Debe Introducir El PATH", "Aceptar");
                 return;
             }
-            else if(string.IsNullOrEmpty(EntPathUrl.Text))
-            {
-                await DisplayAlert("Aviso", "Debe Introducir El PATHURL", "Aceptar");
-                return;
-            }
 
             var app = Application.Current;
 
             app.Properties["IP"] = EntIp.Text;
             app.Properties["PATH"] = EntPath.Text;
-            app.Properties["PATHURL"] = EntPathUrl.Text;
             await app.SavePropertiesAsync();
 
             await Navigation.PushAsync(new MainPage());

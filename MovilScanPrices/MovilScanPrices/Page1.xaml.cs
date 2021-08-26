@@ -1,9 +1,5 @@
 ﻿using Java.Util;
 using MovilScanPrices.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,7 +19,7 @@ namespace MovilScanPrices
 
             lblnombre.Text = product.Description;
             lblprecio.Text = precios[0];
-            lblcent.Text = precios[1].Substring(0,2);
+            lblcent.Text = precios[1].Substring(0, 2);
 
             if (timer == null)
             {

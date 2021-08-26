@@ -6,17 +6,24 @@
              BackgroundColor="#ff630a">
 
     <Frame Margin="50"  BackgroundColor="White">
-        <StackLayout Spacing="0" VerticalOptions="Center">
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Nombre: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
-                <Label x:Name="lblnombre" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Balance Puntos: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
-                <Label x:Name="lblpuntos" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
-            </StackLayout>
+
+       <StackLayout Spacing="0" VerticalOptions="Center">
            
+           <Image Source="FLHCOLOR.png"
+                  HeightRequest="100"
+                  HorizontalOptions="CenterAndExpand"
+                  Aspect="AspectFit"/>
+   
+           <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+               <Label Text="Nombre: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+               <Label x:Name="lblnombre" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+           </StackLayout>
+           <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+               <Label Text="Balance Puntos: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+               <Label x:Name="lblpuntos" VerticalOptions="Center" HorizontalOptions="Center" FontSize="70" TextColor="Black"/>
+           </StackLayout>
+   
         </StackLayout>
     </Frame>
 

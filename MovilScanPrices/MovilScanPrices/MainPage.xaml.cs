@@ -85,8 +85,16 @@ namespace MovilScanPrices
         {
             try
             {
-                var client = new HttpClient();
-                string uri = $"{Application.Current.Properties["PATHURL"]}/getproductsbybarcode?barcode={arg}";
+                HttpClient client;
+
+                var httpClientHandler = new HttpClientHandler();
+
+                httpClientHandler.ServerCertificateCustomValidationCallback =
+                (message, cert, chain, errors) => { return true; };
+
+                client = new HttpClient(httpClientHandler);
+
+                string uri = $"https://{Application.Current.Properties["IP"]}/api/scanPrice/getproductsbybarcode?barcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
@@ -108,14 +116,23 @@ namespace MovilScanPrices
         {
             try
             {
-                var client = new HttpClient();
-                string uri = $"{Application.Current.Properties["PATHURL"]}/gettarjetabybarcode?tarjcode={arg}";
+                HttpClient client;
+
+                var httpClientHandler = new HttpClientHandler();
+
+                httpClientHandler.ServerCertificateCustomValidationCallback =
+                (message, cert, chain, errors) => { return true; };
+
+                client = new HttpClient(httpClientHandler);
+
+                string uri = $"https://{Application.Current.Properties["IP"]}/api/scanprice/GetTarjetaByBarCode?tarjcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
                 if (!response.IsSuccessStatusCode)
                 {
                     await DisplayAlert("Aviso", "no es posible encontrar su producto", "aceptar");
+                    return;
                 }
                 var jsonresult = await response.Content.ReadAsStringAsync();
                 var result =  JsonConvert.DeserializeObject<Tarjeta>(jsonresult); 
