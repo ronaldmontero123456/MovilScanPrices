@@ -2,6 +2,7 @@
 using FFImageLoading.Forms;
 using Java.IO;
 using MovilScanPrices.Model;
+using MovilScanPrices.Model.Struct;
 using MovilScanPrices.ViewModel;
 using MovilScanPrices.Views;
 using Newtonsoft.Json;
@@ -24,27 +25,34 @@ namespace MovilScanPrices
         public new event PropertyChangedEventHandler PropertyChanged;
 
         private int Number = 1;
+        private int Number1 = 1;
+
+        private bool IsLocal = false;
 
         private string scanproduct;
 
         public string ScanProduct { get => scanproduct; set { scanproduct = value; RaiseOnPropertyChanged(); } }
+
+        private bool isvsible;
+
+        public bool IsVisible { get => isvsible; set { isvsible = value; RaiseOnPropertyChanged(); } }
         public MainPage()
         {
 
-            InitializeComponent();
+            InitializeComponent();      
 
             imagenProducto.Error += ImagenProducto_Error;
 
-
-            MessagingCenter.Subscribe<Object, string>(this, "ParsedSmsReceived",
+            MessagingCenter.Subscribe<Object, ScanResultArgs>(this, "ParsedSmsReceived",
              async (sender, arg) =>
              {
-                 if(arg.Length > 12)
+                 if(arg .Result.Length > 12 
+                 || arg.Type == 10)
                  {
-                     await GetProducts(arg);
+                     await GetProducts(arg.Result);
                  }else
                  {
-                     await GetTarjeta(arg);
+                     await GetTarjeta(arg.Result);
                  }
 
              });
@@ -71,8 +79,21 @@ namespace MovilScanPrices
             {
                 if (!framename.IsVisible)
                 {
-                    imagenProducto.Source = $"http://{Application.Current.Properties["IP"]}/{Application.Current.Properties["PATH"]}{Number}.JPeG";
-                    Number++;
+
+                    //frproductono.IsVisible = false;
+
+                    if (IsLocal)
+                    {
+                        imagenProducto.Source = $"http://192.168.1.233/{Application.Current.Properties["PATH"]}{Number1}.JPeG";
+                        IsLocal = false;
+                        Number1++;
+                    }
+                    else
+                    {
+                        imagenProducto.Source = $"http://192.168.1.233/AllStore/imagen{Number}.JPeG";
+                        IsLocal = true;
+                        Number++;
+                    }                                        
                 }
                 // Do something
                 framename.IsVisible = !framename.IsVisible;
@@ -94,27 +115,47 @@ namespace MovilScanPrices
 
                 client = new HttpClient(httpClientHandler);
 
-                string uri = $"https://{Application.Current.Properties["IP"]}/api/scanPrice/getproductsbybarcode?barcode={arg}";
+                string uri = $"http://{Application.Current.Properties["IP"]}/api/scanPrice/getproductsbybarcode?barcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
-                if (!response.IsSuccessStatusCode)
+                string jsonresult;
+                Products result;
+
+                if (response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Aviso", "no es posible encontrar su producto", "aceptar");
+                    jsonresult = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Products>(jsonresult);
+                }else
+                {
+                    httpClientHandler = new HttpClientHandler();
+
+                    httpClientHandler.ServerCertificateCustomValidationCallback =
+                    (message, cert, chain, errors) => { return true; };
+
+                    client = new HttpClient(httpClientHandler);
+
+                    uri = $"http://192.168.1.234:8043/api/scanPrice/getproductsbybarcode?barcode={arg}";
+
+                    client.BaseAddress = new Uri(uri);
+
+                    response = await client.GetAsync(client.BaseAddress);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        frproductono.IsVisible = true;
+                        Task.Delay(500).Wait();
+                        frproductono.IsVisible = false;
+                        return;
+                    }
+
+                    jsonresult = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Products>(jsonresult);
                 }
-                var jsonresult = await response.Content.ReadAsStringAsync();
-                var result =  JsonConvert.DeserializeObject<Products>(jsonresult); 
+
                 await Navigation.PushAsync(new Page1(result), true);
             }
             catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task GetTarjeta(string arg)
-        {
-            try
             {
                 HttpClient client;
 
@@ -125,17 +166,49 @@ namespace MovilScanPrices
 
                 client = new HttpClient(httpClientHandler);
 
-                string uri = $"https://{Application.Current.Properties["IP"]}/api/scanprice/GetTarjetaByBarCode?tarjcode={arg}";
+                string uri = $"http://192.168.1.234:8043/api/scanPrice/getproductsbybarcode?barcode={arg}";
+
+                client.BaseAddress = new Uri(uri);
+                var response = await client.GetAsync(client.BaseAddress);
+
+                string jsonresult;
+                Products result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    jsonresult = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Products>(jsonresult);
+                    await Navigation.PushAsync(new Page1(result), true);
+                }                
+                //throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task GetTarjeta(string arg)
+        {
+            try
+            {
+                var httpClientHandler = new HttpClientHandler();
+
+                httpClientHandler.ServerCertificateCustomValidationCallback =
+                (message, cert, chain, errors) => { return true; };
+
+                HttpClient client = new HttpClient(httpClientHandler);
+                string uri = $"http://192.168.1.234:8043/api/scanprice/GetTarjetaByBarCode?tarjcode={arg}";
                 client.BaseAddress = new Uri(uri);
                 var response = await client.GetAsync(client.BaseAddress);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Aviso", "no es posible encontrar su producto", "aceptar");
+                    frproductono.IsVisible = true;
+                    Task.Delay(500).Wait();
+                    frproductono.IsVisible = false;
                     return;
                 }
+
                 var jsonresult = await response.Content.ReadAsStringAsync();
-                var result =  JsonConvert.DeserializeObject<Tarjeta>(jsonresult); 
+                var result = JsonConvert.DeserializeObject<Tarjeta>(jsonresult);
+
                 await Navigation.PushAsync(new TarjetaPage(result), true);
             }
             catch (Exception ex)
@@ -148,7 +221,7 @@ namespace MovilScanPrices
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             //await nos();
             base.OnAppearing();
@@ -213,7 +286,15 @@ namespace MovilScanPrices
 
         private void ImagenProducto_Error(object sender, FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs e)
         {
-            Number = 1;
+
+            if (IsLocal)
+            {
+                Number = 1;
+            }else
+            {
+                Number1 = 1;
+            }            
+            
             //action.Invoke();
         }
 

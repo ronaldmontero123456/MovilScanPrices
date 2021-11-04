@@ -34,17 +34,31 @@
         <Frame
                x:Name="framename" 
                Margin="50"
+            BackgroundColor="Transparent"
             IsVisible="false">
 
             <ffimageloading:CachedImage 
                             x:Name="imagenProducto"
-                            BackgroundColor="Black"
+                            BackgroundColor="Transparent"
                             DownsampleUseDipUnits="False" 
+                            CacheType="None"
                             Aspect="Fill"
                             Margin="-21"
 							LoadingPlaceholder="image_loading"
                             ErrorPlaceholder="image_not_available"/>
 
         </Frame>
+
+        <Frame Margin="30" 
+               x:Name="frproductono"
+               IsVisible="{Binding IsVisible}"
+               BackgroundColor="White" 
+               BorderColor="#ff630a">
+            <Label Text="no es posible encontrar su producto."
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   FontSize="50"/>
+        </Frame>
+        
     </Grid>
  </ContentPage>

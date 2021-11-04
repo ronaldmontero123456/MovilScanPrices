@@ -35,8 +35,9 @@ namespace MovilScanPrices.Views
             app.Properties["IP"] = EntIp.Text;
             app.Properties["PATH"] = EntPath.Text;
             await app.SavePropertiesAsync();
-
+            
             await Navigation.PushAsync(new MainPage());
+            Navigation.RemovePage(this);
         }
     }
 }

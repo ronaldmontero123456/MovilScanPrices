@@ -16,8 +16,7 @@ namespace MovilScanPrices.Views
             InitializeComponent();
 
             lblnombre.Text = tarjeta.DesCription;
-            lblpuntos.Text = Math.Round(tarjeta.TotalPuntos, 2).ToString();
-
+            lblpuntos.Text = (tarjeta.TotalPuntos.ToString("N2").Split('.')[0]) + " Puntos";
 
             if (timer == null)
             {

@@ -1,4 +1,5 @@
 ﻿using Java.Util;
+using MovilScanPrices.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace MovilScanPrices
 
         public override void Run()
         {
-            if(i < 5)
+            if(i < 7)
             {
                 i++;
             }
@@ -35,7 +36,16 @@ namespace MovilScanPrices
                         await App.Current.MainPage.Navigation.PopToRootAsync(true); 
                     });
                 i = 0;
-                Page1.timer = null;
+
+                if(Page1.timer != null)
+                {
+                    Page1.timer = null;
+                }
+                if(TarjetaPage.timer != null)
+                {
+                    TarjetaPage.timer = null;
+                }
+                                
                 mytime.Cancel();
             }
         }
